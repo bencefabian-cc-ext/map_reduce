@@ -23,9 +23,9 @@ public:
         return WordCount{};
     }
 
-    unsigned long long to_number() const { return count_; }
+    [[nodiscard]] unsigned long long to_number() const { return count_; }
 
-    WordCount combine(const WordCount &right) const {
+    [[nodiscard]] WordCount combine(const WordCount &right) const {
         bool begin = this->beginning_in_middle_;
         unsigned long long count = this->count_ + right.count_;
         bool end = right.ending_in_middle_;
