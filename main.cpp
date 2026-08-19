@@ -25,7 +25,7 @@ public:
 
     unsigned long long to_number() const { return count_; }
 
-    WordCount combine(const WordCount& right) const {
+    WordCount combine(const WordCount &right) const {
         bool begin = this->beginning_in_middle_;
         unsigned long long count = this->count_ + right.count_;
         bool end = right.ending_in_middle_;
@@ -34,6 +34,7 @@ public:
         }
         return WordCount{begin, count, end};
     }
+
 private:
     unsigned long long count_;
     bool beginning_in_middle_;
@@ -54,7 +55,6 @@ WordCount transform_to_word_count(const std::string_view &part) {
 // TODO: How many times does a given word reside in the text
 // hint: bool -> std::optional<std::string_view>
 class FindWord {
-
 };
 
 int main() {
@@ -64,10 +64,9 @@ int main() {
         auto chunk_len = std::min(MAX_CHUNK_LEN, lorem_ipsum_s.length() - i);
         parts.push_back(lorem_ipsum_s.substr(i, chunk_len));
     }
-    auto mr = MapReduce(parts);
     for (auto part: parts) {
         std::cout << part << "\n";
     }
-    auto word_count_mr = mr.map<WordCount>(transform_to_word_count);
-    std::cout << word_count_mr.reduce().to_number() << "\n";
+    auto mr = MapReduce(parts);
+    std::cout << mr.map<WordCount>(transform_to_word_count).reduce().to_number() << "\n";
 }
