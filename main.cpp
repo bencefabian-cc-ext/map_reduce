@@ -68,6 +68,6 @@ int main() {
     for (auto part: parts) {
         std::cout << part << "\n";
     }
-    auto word_count_mr = mr.transform<WordCount>(transform_to_word_count);
-    std::cout << word_count_mr.get_result().to_number() << "\n";
+    auto word_count_mr = mr.map<WordCount>(transform_to_word_count);
+    std::cout << word_count_mr.reduce().to_number() << "\n";
 }
