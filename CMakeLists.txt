@@ -3,5 +3,7 @@ project(map_reduce)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(map_reduce main.cpp
-        )
+add_executable(map_reduce
+        main.cpp
+        word_count.cpp
+)
